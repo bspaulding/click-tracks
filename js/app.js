@@ -90,5 +90,11 @@ ClickTracks.PlaylistsShowController = Ember.ObjectController.extend({
   },
   pauseSong: function(song) {
     this.get('model').pauseSong(song);
+  },
+  next: function() {
+    this.get('model').next();
+  },
+  previous: function() {
+    this.get('model').previous();
   }
 });
