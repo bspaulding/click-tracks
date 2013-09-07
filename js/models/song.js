@@ -20,6 +20,9 @@ ClickTracks.Song = DS.Model.extend({
   pause: function() {
     this.get('metronome').stop();
     this.set('isPlaying', false);
+  },
+  togglePlaying: function() {
+    if ( this.get('isPlaying') ) { this.pause(); } else { this.play(); }
   }
 });
 

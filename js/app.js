@@ -64,11 +64,10 @@ ClickTracks.SongsNewRoute = Ember.Route.extend({
 ClickTracks.SongsIndexController = Ember.ArrayController.extend({
   sortProperties: ['title', 'bpm'],
 
-  playSong: function(song) {
-    this.map(function(aSong) { aSong.pause(); });
-    song.play();
-  },
-  pauseSong: function(song) { song.pause(); }
+  toggleSong: function(song) {
+    this.map(function(aSong) { if (aSong !== song) { aSong.pause(); } });
+    song.togglePlaying();
+  }
 });
 
 ClickTracks.SongsNewController = Ember.ObjectController.extend({

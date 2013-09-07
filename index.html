@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>ClickTracks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>ClickTracks</title>
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap-glyphicons.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="container">
+<body class="container container-inverse">
 
   <script type="text/x-handlebars">
-    <div class="navbar">
+    <div class="navbar navbar-inverse">
       <div class="container">
 
         <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
@@ -154,12 +156,7 @@
       <tbody>
       {{#each song in this}}
         <tr {{bindAttr class="song.isPlaying:active"}}>
-          <th>
-            {{#if song.isPlaying}}
-              <button class="btn btn-primary btn-xs glyphicon glyphicon-pause" {{action 'pauseSong' song}}></button>
-            {{else}}
-              <button class="btn btn-primary btn-xs glyphicon glyphicon-play" {{action 'playSong' song}}></button>
-            {{/if}}
+          <th {{action 'toggleSong' song}}>
             {{song.title}}
           </th>
           <td class="text-right">{{song.bpm}}</td>

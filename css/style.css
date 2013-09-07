@@ -1,3 +1,7 @@
 /* Bootstrap fixes/hacks */
 
 .glyphicon:before { position: relative; top: 2px; }
+
+body { font-family: 'Nunito', sans-serif; }
+
+.container-inverse { background-color: #222; color: #999; }
