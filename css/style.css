@@ -1,6 +1,9 @@
 /* Bootstrap fixes/hacks */
 
 .glyphicon:before { position: relative; top: 2px; }
+.navbar { margin-bottom: 0px; }
+
+/* click-tracks styles */
 
 body { font-family: 'Nunito', sans-serif; }
 
