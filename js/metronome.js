@@ -27,9 +27,24 @@ var Metronome = (function() {
     bindAll(this);
   }
 
+  Metronome.prototype.setTempo = function(newTempo) {
+    var wasPlaying = this.isPlaying;
+    this.stop();
+
+    this.tempo = newTempo;
+
+    if ( wasPlaying ) {
+      this.play();
+    }
+  }
+
   Metronome.prototype.nextNote = function() {
+    this.nextNoteTime += this.nextNoteInterval();
+  }
+
+  Metronome.prototype.nextNoteInterval = function() {
     var secondsPerBeat = 60.0 / this.tempo;
-    this.nextNoteTime += this.noteResolution * secondsPerBeat;
+    return this.noteResolution * secondsPerBeat;
   }
 
   Metronome.prototype.scheduleNote = function(time) {
