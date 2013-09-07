@@ -1,6 +1,7 @@
 ClickTracks.Song = DS.Model.extend({
   title: DS.attr('string'),
   bpm: DS.attr('number'),
+  playlists: DS.hasMany('playlist', { async: true }),
 
   metronome: function() {
     if ( !this.get('_metronome') ) {

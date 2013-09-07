@@ -1,6 +1,6 @@
 ClickTracks.Playlist = DS.Model.extend({
   name: DS.attr('string'),
-  songs: DS.hasMany('ClickTracks.Song'),
+  songs: DS.hasMany('song', { async: true }),
 
   currentSong: function() {
     return this.get('songs').filterProperty('isPlaying', true).objectAt(0);

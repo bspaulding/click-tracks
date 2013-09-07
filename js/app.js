@@ -22,13 +22,13 @@ ClickTracks.IndexRoute = Ember.Route.extend({
 
 ClickTracks.PlaylistsIndexRoute = Ember.Route.extend({
   model: function() {
-    return ClickTracks.Playlist.find();
+    return this.get('store').findAll('playlist');
   }
 });
 
 ClickTracks.PlaylistsShowRoute = Ember.Route.extend({
   model: function(params) {
-    return ClickTracks.Playlist.find(params.id);
+    return this.get('store').find('playlist', params.id);
   },
 
   serialize: function(object) {
@@ -38,13 +38,13 @@ ClickTracks.PlaylistsShowRoute = Ember.Route.extend({
 
 ClickTracks.SongsIndexRoute = Ember.Route.extend({
   model: function() {
-    return ClickTracks.Song.find();
+    return this.get('store').findAll('song');
   }
 });
 
 ClickTracks.SongsShowRoute = Ember.Route.extend({
   model: function(params) {
-    return ClickTracks.Song.find(params.id);
+    return this.get('store').find('song', params.id);
   },
 
   serialize: function(song) {
@@ -64,9 +64,11 @@ ClickTracks.SongsNewRoute = Ember.Route.extend({
 ClickTracks.SongsIndexController = Ember.ArrayController.extend({
   sortProperties: ['title', 'bpm'],
 
-  toggleSong: function(song) {
-    this.map(function(aSong) { if (aSong !== song) { aSong.pause(); } });
-    song.togglePlaying();
+  actions: {
+    toggleSong: function(song) {
+      this.map(function(aSong) { if (aSong !== song) { aSong.pause(); } });
+      song.togglePlaying();
+    }
   }
 });
 
@@ -83,6 +85,10 @@ ClickTracks.PlaylistsShowController = Ember.ObjectController.extend({
   },
   pause: function() {
     this.get('model').pause();
+  },
+  toggleSong: function(song) {
+    this.get('model.songs').map(function(aSong) { if (aSong !== song) { aSong.pause(); } });
+    song.togglePlaying();
   },
   playSong: function(song) {
     this.get('model').playSong(song);
